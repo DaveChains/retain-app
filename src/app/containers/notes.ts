@@ -33,6 +33,7 @@ margin-bottom: 40px;
 export class NotesContainer {
     note = {
         title:'this is a note',
-        value: 'eat some foot'
+        value: 'eat some foot',
+        color: 'lightblue'
     }
 };
