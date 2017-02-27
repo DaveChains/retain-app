@@ -15,7 +15,7 @@ margin-bottom: 40px;
     template:`
     <div class="row center-xs notes">
       <div class="col-xs-6 creator">
-         <note-creator></note-creator>
+         <note-creator (createNote)="onCreateNote($event)"></note-creator>
       </div>
       <div class="notes col-xs-8">
         <div class="row between-xs">
@@ -23,7 +23,7 @@ margin-bottom: 40px;
             class="col-xs-4"
             [note]="note"
             *ngFor="let note of notes; let i = index"
-            (checked)="onNoteChecked(i)"
+            (checked)="onNoteChecked($event, i)"
           >
           </note-card>
         </div>
@@ -34,9 +34,14 @@ margin-bottom: 40px;
 })
 export class NotesContainer {
 
-    onNoteChecked(i : number){
+    onNoteChecked(note, i){
         this.notes.splice(i, 1);
     }
+
+    onCreateNote(note){
+        this.notes.push(note);
+    }
+
     notes = [
         {
             title:'this is a note',
