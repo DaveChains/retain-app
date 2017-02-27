@@ -22,6 +22,8 @@ margin-bottom: 40px;
           <note-card
             class="col-xs-4"
             [note]="note"
+            *ngFor="let note of notes; let i = index"
+            (checked)="onNoteChecked(i)"
           >
           </note-card>
         </div>
@@ -31,9 +33,25 @@ margin-bottom: 40px;
 
 })
 export class NotesContainer {
-    note = {
-        title:'this is a note',
-        value: 'eat some foot',
-        color: 'lightblue'
+
+    onNoteChecked(i : number){
+        this.notes.splice(i, 1);
     }
+    notes = [
+        {
+            title:'this is a note',
+            value: 'eat some foot',
+            color: 'lightblue'
+        },
+        {
+            title:'this is a note',
+            value: 'eat some foot',
+            color: 'red'
+        },
+        {
+            title:'this is a note',
+            value: 'eat some foot',
+            color: 'yellow'
+        }
+    ]
 };

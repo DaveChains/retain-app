@@ -3,9 +3,11 @@
  */
 import {
     Component,
-    Input
-
+    Input,
+    Output,
+    EventEmitter
 } from '@angular/core'
+
 @Component({
     selector : 'note-card',
     styles: [`
@@ -48,9 +50,9 @@ import {
         (mouseenter)="toggleCheck()" 
         >
         <div 
-        class="icon" 
+        class="icon"
+        *ngIf="showChek"
         (click)="onChecked()"
-        *ngIf="showCheked"
         >
             <i class="material-icons">check</i>
         </div>
@@ -64,13 +66,14 @@ import {
     `})
 export class NoteCard{
     @Input() note = {};
-    showCheked: boolean = false
+    @Output() checked = new EventEmitter();
+    showChek: boolean = false
 
     toggleCheck(){
-        this.showCheked = !this.showCheked;
+        this.showChek = !this.showChek;
     }
 
     onChecked(){
-        console.log('hello')
+        this.checked.next(this.note)
     }
 }
