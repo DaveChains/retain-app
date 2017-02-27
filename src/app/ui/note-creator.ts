@@ -33,15 +33,17 @@ import {
           name="newNoteTitle"
           placeholder="Title"
           class="col-xs-10 title"
+          *ngIf="fullForm"
         >
         <input
           type="text"
+          (focus)="toggle(true)" 
           [(ngModel)]="newNote.value"
           name="newNoteValue"
           placeholder="Take a note..."
           class="col-xs-10"
         >
-        <div class="actions col-xs-12 row between-xs">
+        <div class="actions col-xs-12 row between-xs" *ngIf="fullForm">
           <button
             type="submit"
             class="btn-light"
@@ -57,6 +59,12 @@ import {
 export class NoteCreator{
     @Output() createNote = new EventEmitter();
 
+    fullForm : boolean = false;
+
+
+    toggle(value : boolean){
+        this.fullForm = value;
+    }
     onCreateNote(){
         const {title, value} = this.newNote;
         if(title && value){
@@ -64,6 +72,7 @@ export class NoteCreator{
 
         }
         this.reset();
+        this.toggle(false)
     }
 
     reset(){
