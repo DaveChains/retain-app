@@ -3,7 +3,7 @@ import {HttpModule} from '@angular/http';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
-import {App, providers} from './app';
+import {App, providers, routes} from './app';
 import {Main, NotesContainer} from './app/containers';
 import {
     AppBar,
@@ -27,7 +27,8 @@ import {
     imports:[
         BrowserModule,
         FormsModule,
-        HttpModule
+        HttpModule,
+        routes
     ],
     bootstrap: [App]
 })
