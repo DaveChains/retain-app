@@ -46,7 +46,7 @@ import {
         <div class="actions col-xs-12 row between-xs" *ngIf="fullForm">
           <div class="col-xs-3">
             <color-picker
-                [colors]="colors" ]
+                [colors]="colors"
                 (selected)="onColorSelect($event)"
             ></color-picker>
           </div>
@@ -65,6 +65,7 @@ import {
 export class NoteCreator{
 
     @Output() createNote = new EventEmitter();
+
     colors : string[] = ['#b19cd9', '#ff9691', '#77dd77', '#aec6cf', '#f49ac2', 'white'];
     fullForm : boolean = false;
 
@@ -77,9 +78,8 @@ export class NoteCreator{
     }
     onCreateNote(){
         const {title, value, color} = this.newNote;
-        if(title && value){
+        if(title != null && value != null){
             this.createNote.next({title, value, color});
-
         }
         this.reset();
         this.toggle(false)

@@ -8,28 +8,28 @@ import 'rxjs/Rx';
 import 'rxjs/add/observable/throw';
 
 @Injectable()
-export class ApiService{
+export class ApiService {
 
     api_url :string = 'http://localhost:3500';
 
     headers: Headers = new Headers({
         'Content-Type':'application/json',
         Accept : 'application/json'
-    })
+    });
 
     constructor(private http: Http){
 
     }
 
     private getJson(resp : Response){
-        return resp.json()
+        return resp.json();
     }
 
     private checkForError(resp : Response) : Response {
-        if(resp.status >= 200 && resp.status > 300){
-            return resp
+        if(resp.status >= 200 && resp.status < 300){
+            return resp;
         }else {
-            const error = new Error(resp.statusText)
+            const error = new Error(resp.statusText);
             error['response'] = resp;
             console.error(error);
             throw error;
@@ -37,6 +37,9 @@ export class ApiService{
     }
 
     get(path : string) : Observable<any>{
+        let result = this.http.get(`${this.api_url}${path}`,this.headers);
+        console.log("Result of call API get ===   " + result)
+
         return this.http.get(`${this.api_url}${path}`,this.headers)
             .map(this.checkForError)
             .catch(err => Observable.throw(err))

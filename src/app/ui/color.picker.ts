@@ -58,6 +58,7 @@ import {
 export class ColorPicker {
     @Input() colors : string[] = [];
     @Output() selected = new EventEmitter();
+
     isSelectorVisible : boolean = false;
 
     showSelector(value : boolean){
