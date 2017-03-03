@@ -2,7 +2,7 @@
  * Created by davidchains on 2/26/17.
  */
 
-import {Component, Injectable} from '@angular/core';
+import {Component, Injectable, OnDestroy} from '@angular/core';
 import {NoteService} from '../services';
 
 @Component({
@@ -35,28 +35,16 @@ import {NoteService} from '../services';
 
 })
 @Injectable()
-export class NotesContainer {
-    notes = [
-    //     {
-    //     title:'this is a note',
-    //     value: 'eat some foot',
-    //     color: 'lightblue'
-    // },
-    //     {
-    //         title:'this is a note',
-    //         value: 'eat some foot',
-    //         color: 'red'
-    //     },
-    //     {
-    //         title:'this is a note',
-    //         value: 'eat some foot',
-    //         color: 'yellow'
-    //     }
-        ];
+export class NotesContainer implements OnDestroy{
+    notes = [     ];
 
     constructor(private noteService : NoteService){
         this.noteService.getNotes()
             .subscribe(resp => this.notes = resp.data);
+    }
+
+    ngOnDestroy(){
+        console.log("Destroy");
     }
 
     onNoteChecked(note){
@@ -66,6 +54,8 @@ export class NotesContainer {
                 this.notes.splice(i, 1);
         })
     }
+
+
 
     onCreateNote(note){
         this.noteService.createNote(note)
