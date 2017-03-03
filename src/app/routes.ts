@@ -4,6 +4,7 @@
 import {RouterModule} from '@angular/router'
 import {ModuleWithProviders} from '@angular/core'
 import {Main, NotesContainer} from './containers'
+import {About} from "./containers/about";
 
 export const routes : ModuleWithProviders = RouterModule.forRoot([
     {
@@ -13,6 +14,10 @@ export const routes : ModuleWithProviders = RouterModule.forRoot([
             {
                 path : '',
                 component : NotesContainer
+            },
+            {
+                path : 'about',
+                component : About
             }
         ]
     },
