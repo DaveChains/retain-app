@@ -16,11 +16,18 @@ export interface Note {
 }
 
 export interface State {
-    notes : Note[]
+    notes : Array<Note>,
+    user : User
+}
+
+export interface User{
+    id? : string
 }
 
 const defaultState : State = {
-    notes : []
+    notes : [],
+    user : {}
+
 }
 const _store = new BehaviorSubject<State>(defaultState);
 

@@ -11,6 +11,7 @@ import {
     NoteCreator,
     ColorPicker
 } from './app/ui';
+import {Auth} from "./app/containers/Auth";
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import {
         NotesContainer,
         NoteCreator,
         ColorPicker,
-        About
+        About,
+        Auth
     ],
     providers,
     imports:[
